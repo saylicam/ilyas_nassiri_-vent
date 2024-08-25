@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "name": "Conférence sur l'IA",
+    "date": "2024-09-15",
+    "location": "Paris, France",
+    "description": "Une conférence sur les dernières avancées en intelligence artificielle.",
+    "image": "ai-conference.jpg",
+    "category_id": 1
+  },
+  {
+    "id": 2,
+    "name": "Atelier de Développement Web",
+    "date": "2024-10-05",
+    "location": "Lyon, France",
+    "description": "Un atelier pratique pour apprendre les bases du développement web.",
+    "image": "web-development-workshop.jpg",
+    "category_id": 2
+  },
+  {
+    "id": 3,
+    "name": "Séminaire sur la Gestion de Projet",
+    "date": "2024-11-20",
+    "location": "Marseille, France",
+    "description": "Un séminaire pour améliorer vos compétences en gestion de projet.",
+    "image": "project-management-seminar.jpg",
+    "category_id": 3
+  },
+  {
+    "id": 4,
+    "name": "Concert de Jazz",
+    "date": "2024-12-01",
+    "location": "Nice, France",
+    "description": "Un concert en direct avec des artistes de jazz renommés.",
+    "image": "jazz-concert.jpg",
+    "category_id": 4
+  },
+  {
+    "id": 5,
+    "name": "Exposition d'Art Moderne",
+    "date": "2024-08-30",
+    "location": "Bordeaux, France",
+    "description": "Une exposition d'œuvres d'art moderne par des artistes contemporains.",
+    "image": "modern-art-exhibition.jpg",
+    "category_id": 5
+  }
+]

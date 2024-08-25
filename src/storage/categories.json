@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "name": "Conférences",
+    "description": "Événements formels où des experts partagent leurs connaissances."
+  },
+  {
+    "id": 2,
+    "name": "Ateliers",
+    "description": "Sessions interactives avec une composante pratique."
+  },
+  {
+    "id": 3,
+    "name": "Séminaires",
+    "description": "Événements éducatifs avec discussions dirigées par des experts."
+  },
+  {
+    "id": 4,
+    "name": "Concerts",
+    "description": "Événements musicaux avec des performances live."
+  },
+  {
+    "id": 5,
+    "name": "Expositions",
+    "description": "Événements où des œuvres d'art ou des produits sont exposés."
+  }
+]
