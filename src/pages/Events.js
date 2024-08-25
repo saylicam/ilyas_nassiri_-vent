@@ -5,6 +5,7 @@ export const Events = (element) => {
 
   // Générer le contenu HTML pour chaque événement
   eventsData.forEach((event) => {
+    console.log("Chargement de l'événement:", event); // Ajout du log pour chaque événement
     eventsHTML += `
       <div class="col-md-6 col-lg-4 mb-4 d-flex align-items-stretch">
         <div class="card shadow-sm">

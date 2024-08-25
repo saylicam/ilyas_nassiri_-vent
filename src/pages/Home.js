@@ -1,4 +1,8 @@
+import eventsData from "../storage/events.json"; // Assurez-vous d'importer les données des événements
+
 export const Home = (element) => {
+  const firstThreeEvents = eventsData.slice(0, 3); // Prendre les 3 premiers événements
+
   element.innerHTML = `
     <div class="container mt-5">
       <div class="jumbotron bg-light p-5 rounded-lg shadow-sm">
@@ -10,33 +14,17 @@ export const Home = (element) => {
       </div>
 
       <div class="row mt-5">
-        <div class="col-md-4">
-          <div class="card border-primary shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title text-primary">Événement 1</h5>
-              <p class="card-text">Description de l'événement 1.</p>
-              <a href="/event/1" class="btn btn-outline-primary">Voir les détails</a>
+        ${firstThreeEvents.map(event => `
+          <div class="col-md-4">
+            <div class="card border-primary shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title text-primary">${event.name}</h5>
+                <p class="card-text">${event.description.substring(0, 100)}...</p>
+                <a href="/event/${event.id}" class="btn btn-outline-primary">Voir les détails</a>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card border-primary shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title text-primary">Événement 2</h5>
-              <p class="card-text">Description de l'événement 2.</p>
-              <a href="/event/2" class="btn btn-outline-primary">Voir les détails</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card border-primary shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title text-primary">Événement 3</h5>
-              <p class="card-text">Description de l'événement 3.</p>
-              <a href="/event/3" class="btn btn-outline-primary">Voir les détails</a>
-            </div>
-          </div>
-        </div>
+        `).join('')}
       </div>
     </div>
   `;

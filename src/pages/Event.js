@@ -23,19 +23,19 @@ function addOrUpdateClient(clientData) {
   }
 }
 
-// Fonction pour récupérer toutes les réservations
-function getReservations() {
-  return JSON.parse(localStorage.getItem("reservations")) || [];
+// Fonction pour récupérer le panier
+function getCart() {
+  return JSON.parse(localStorage.getItem("panier")) || [];
 }
 
-// Fonction pour ajouter une nouvelle réservation
-function addReservation(reservation) {
-  const reservations = getReservations();
-  reservation.id = reservations.length
-    ? reservations[reservations.length - 1].id + 1
-    : 1;
-  reservations.push(reservation);
-  localStorage.setItem("reservations", JSON.stringify(reservations));
+// Fonction pour ajouter une réservation au panier
+function addToCart(reservation) {
+  const panier = getCart();
+  panier.push(reservation);
+  localStorage.setItem("panier", JSON.stringify(panier));
+
+  // Met à jour le nombre d'articles dans le panier dans la navigation
+  document.getElementById('cart-count').textContent = panier.length;
 }
 
 export const Event = (element) => {
@@ -91,25 +91,28 @@ export const Event = (element) => {
       </div>
     `;
 
-    document
-      .getElementById("reservationForm")
-      .addEventListener("submit", (event) => {
-        event.preventDefault();
-        const clientData = {
-          firstName: document.getElementById("firstName").value,
-          lastName: document.getElementById("lastName").value,
-          email: document.getElementById("email").value,
-        };
-        const clientId = addOrUpdateClient(clientData);
-        const newReservation = {
-          clientId: clientId,
-          eventId: parseInt(eventId),
-          numberOfSeats: parseInt(
-            document.getElementById("numberOfSeats").value
-          ),
-        };
-        addReservation(newReservation);
-        alert("Réservation ajoutée avec succès!");
-      });
+    document.getElementById("reservationForm").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const clientData = {
+        firstName: document.getElementById("firstName").value,
+        lastName: document.getElementById("lastName").value,
+        email: document.getElementById("email").value,
+      };
+      const clientId = addOrUpdateClient(clientData);
+      const newReservation = {
+        clientId: clientId,
+        eventId: parseInt(eventId),
+        numberOfSeats: parseInt(document.getElementById("numberOfSeats").value),
+        name: event.name, // Assurez-vous que ces propriétés existent
+        date: event.date,
+        location: event.location,
+        image: event.image,
+      };
+
+      // Ajouter la réservation au panier
+      addToCart(newReservation);
+      alert("Réservation ajoutée au panier avec succès!");
+    });
   }
 };
+

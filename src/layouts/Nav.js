@@ -1,15 +1,11 @@
 import { ROUTE_CHANGED_EVENT } from "../framework/app";
 
-/**
- * @typedef {Object} Link
- * @property {string} href - L'URL du lien.
- * @property {string} text - Le texte du lien.
- */
+// Fonction pour récupérer le nombre d'articles dans le panier
+const getCartItemCount = () => {
+  const panier = JSON.parse(localStorage.getItem("panier")) || [];
+  return panier.length;
+};
 
-/**
- * @param {HTMLElement} element
- * @returns {void}
- */
 export const Nav = (element) => {
   const appName = "EventMaster";
 
@@ -40,6 +36,11 @@ export const Nav = (element) => {
                 </li>`
               )
               .join("")}
+            <li class="nav-item">
+              <a class="nav-link text-secondary fw-semibold" href="/panier">
+                Panier <span class="badge bg-primary" id="cart-count">${getCartItemCount()}</span>
+              </a>
+            </li>
           </ul>
         </div>
       </div>
@@ -51,21 +52,16 @@ export const Nav = (element) => {
     const navLinks = element.querySelectorAll("a");
 
     const linkClickHandler = (event) => {
-      // Empêche la navigation par défaut
       event.preventDefault();
-      // Modifie l'URL de la page sans recharger la page
       window.history.pushState({}, "", event.target.href);
-      // Déclenche l'événement route-changed pour changer de page sans recharger la page
       element.dispatchEvent(new CustomEvent(ROUTE_CHANGED_EVENT));
     };
 
-    // Ajoute un écouteur d'événement sur chaque lien de navigation
     for (let i = 0; i < navLinks.length; i++) {
       navLinks[i].addEventListener("click", linkClickHandler);
     }
   };
 
-  // Supprime la classe active des liens de navigation
   const removeActive = () => {
     const activeLink = element.querySelector("a.active");
     if (activeLink) {
@@ -73,7 +69,6 @@ export const Nav = (element) => {
     }
   };
 
-  // Ajoute la classe active au lien de navigation correspondant à l'URL de la page courante
   const markAsActive = () => {
     const activeLink = element.querySelector(
       `a.nav-link[href="${window.location.pathname}"]`
@@ -84,16 +79,12 @@ export const Nav = (element) => {
     activeLink.classList.add("active", "text-primary");
   };
 
-  // Modifie le titre de la page en fonction du lien de navigation actif
   const changePageTitle = () => {
     const activeLink = element.querySelector("a.active");
-
-    // Si la page courante n'est pas une page de navigation, on affiche uniquement le nom de l'application
     if (!activeLink) {
       document.title = appName;
       return;
     }
-
     document.title = `${activeLink.textContent} - ${appName}`;
   };
 

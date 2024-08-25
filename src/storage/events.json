@@ -5,7 +5,7 @@
     "date": "2024-09-15",
     "location": "Paris, France",
     "description": "Une conférence sur les dernières avancées en intelligence artificielle.",
-    "image": "ai-conference.jpg",
+    "image": "/evenement/ia.webp",
     "category_id": 1
   },
   {
@@ -14,7 +14,7 @@
     "date": "2024-10-05",
     "location": "Lyon, France",
     "description": "Un atelier pratique pour apprendre les bases du développement web.",
-    "image": "web-development-workshop.jpg",
+    "image": "/evenement/atelier.webp",
     "category_id": 2
   },
   {
@@ -23,7 +23,7 @@
     "date": "2024-11-20",
     "location": "Marseille, France",
     "description": "Un séminaire pour améliorer vos compétences en gestion de projet.",
-    "image": "project-management-seminar.jpg",
+    "image": "/evenement/sem.webp",
     "category_id": 3
   },
   {
@@ -32,7 +32,7 @@
     "date": "2024-12-01",
     "location": "Nice, France",
     "description": "Un concert en direct avec des artistes de jazz renommés.",
-    "image": "jazz-concert.jpg",
+    "image": "/evenement/jaz.webp",
     "category_id": 4
   },
   {
@@ -41,7 +41,7 @@
     "date": "2024-08-30",
     "location": "Bordeaux, France",
     "description": "Une exposition d'œuvres d'art moderne par des artistes contemporains.",
-    "image": "modern-art-exhibition.jpg",
+    "image": "/evenement/art.webp",
     "category_id": 5
   }
 ]

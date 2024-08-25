@@ -1,3 +1,5 @@
+import eventsData from "../storage/events.json"; // Assurez-vous d'importer les données des événements
+
 export const ReservationsPage = (element, eventId) => {
   const reservations = getReservations().filter(
     (reservation) => reservation.eventId == eventId
@@ -64,15 +66,25 @@ export const ReservationsPage = (element, eventId) => {
           email: document.getElementById("email").value,
         };
         const clientId = addOrUpdateClient(clientData);
+
+        // Récupérer les détails de l'événement
+        const eventDetails = eventsData.find((e) => e.id == eventId);
+
         const newReservation = {
           clientId: clientId,
           eventId: eventId,
           numberOfSeats: parseInt(
             document.getElementById("numberOfSeats").value
           ),
+          eventName: eventDetails.name, // Ajouter le nom de l'événement
+          eventDate: eventDetails.date, // Ajouter la date de l'événement
+          eventLocation: eventDetails.location, // Ajouter le lieu de l'événement
+          eventImage: eventDetails.image, // Ajouter l'image de l'événement
         };
-        addReservation(newReservation);
-        alert("Réservation ajoutée avec succès!");
+
+        // Ajout de la réservation au panier au lieu de la base de données
+        addToCart(newReservation);
+        alert("Réservation ajoutée au panier avec succès!");
         ReservationsPage(element, eventId); // Rafraîchir la page pour afficher la nouvelle réservation
       });
   };
@@ -84,4 +96,14 @@ export const ReservationsPage = (element, eventId) => {
       ReservationsPage(element, eventId); // Rafraîchir la page pour mettre à jour la liste des réservations
     }
   };
+};
+
+// Fonction pour ajouter une réservation au panier
+const addToCart = (reservation) => {
+  const panier = JSON.parse(localStorage.getItem("panier")) || [];
+  panier.push(reservation);
+  localStorage.setItem("panier", JSON.stringify(panier));
+
+  // Mise à jour du nombre d'articles dans le panier dans la navigation
+  document.getElementById('cart-count').textContent = panier.length;
 };
